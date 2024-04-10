@@ -19,15 +19,17 @@ module.exports = {
                 console.log("Histoire créée", newStory);
                 return res.redirect("/story/list")
             }
-        } 
+        }
         catch (error) {
             console.error("Erreur lors de la création de l'histoire :", error);
             return res.status(500).send("Une erreur est survenue lors de la création de l'histoire.");
         }
     },
 
-    list: (req, res) => {
-        res.render('story_list')
+    list: async (req, res) => {
+        const stories = await Story.findAll({ raw: true });
+        console.log(stories);
+        res.render('story_list', { stories })
     },
 
     read: (req, res) => {

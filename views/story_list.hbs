@@ -27,8 +27,9 @@
     </div>
 
     <div class="articles-pannel">
+        {{#each stories}}
         <div class="article-title">
-            <h3>Titre</h5>
+            <h3> {{title}} </h5>
         </div>
         <div class="article-sample">
             <div class="col-1">
@@ -39,9 +40,7 @@
             <div class="col-2">
                 <div class="article-resume">
                     <h4>Incipit</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad doloribus assumenda eveniet, at
-                        fugit
-                        unde cum quaerat iusto vitae odit.</p>
+                    <p> {{content}} </p>
                 </div>
                 <div class="article-infos">
                     <p>Genre</p>
@@ -51,5 +50,6 @@
                 </div>
             </div>
         </div>
+        {{/each}}
     </div>
 </div>
