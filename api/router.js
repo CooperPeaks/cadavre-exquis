@@ -41,7 +41,8 @@ router.route('/user/register')
     .post(userController.post)
 
 router.route('/user/log')
-    .get(userController.log)
+    .get(userController.getLogin)
+    .post(userController.postLogin)
 
 router.route('/user/account')
     .get(userController.getAccount)

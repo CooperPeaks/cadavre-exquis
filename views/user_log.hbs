@@ -2,7 +2,7 @@
 <h1 class="log-title">Connexion</h1>
 </div>
 
-<form action="" class="log-form">
+<form action="/user/log" method="post" class="log-form">
     <div class="username">
         <label for="username">Nom d'utilisateur</label>
         <input type="text" name="username" id="username" placeholder="Entrez votre nom d'utilisateur">
@@ -11,6 +11,6 @@
         <label for="password">Mot de passe</label>
         <input type="text" name="password" id="password" placeholder="Entrez votre mot de passe">
     </div>
-    <button><a href="/user/account">Se connecter</a></button>
+    <button type="submit">Se connecter</button>
     <button><a href="/user/admin">Admin</a></button>
 </form>
