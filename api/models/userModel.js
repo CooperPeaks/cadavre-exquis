@@ -1,6 +1,7 @@
 const {DataTypes} = require('sequelize')
 const bcrypt = require('bcrypt')
 const config = require('../../config')
+const Story = require('./storyModel')
 
 const User = config.sequelize.define('users', {
     id: {
@@ -25,5 +26,9 @@ const User = config.sequelize.define('users', {
         defaultValue: false
     }
 })
+
+// User.hasMany(Story)
+// Story.belongsTo(User)
+
 
 module.exports = User

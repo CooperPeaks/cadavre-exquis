@@ -38,6 +38,7 @@ router.route('/story/read')
 // User routes
 router.route('/user/register')
     .get(userController.get)
+    .post(userController.post)
 
 router.route('/user/log')
     .get(userController.log)
