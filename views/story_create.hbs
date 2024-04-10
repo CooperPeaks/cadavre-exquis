@@ -1,0 +1,32 @@
+<div class="page-title">
+    <h1>Rédiger une histoire</h1>
+</div>
+
+<form action="/story/create" method="POST" onsubmit="StoryCheck()">
+    <div class="story-attributes">
+        <div class="article-title">
+            <label for="title">Titre</label>
+            <input type="text" id="title" name="title">
+        </div>
+
+        <div class="article-genre">
+            <label for="genre">Genre</label>
+            <select name="Genre" id="genre">
+                <option value="policier">Policier</option>
+                <option value="sciFi">Science-fiction</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="free">Thème libre</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="article-content">
+        <textarea name="articleContent" id="articleContent" cols="200" rows="30"></textarea>
+    </div>
+
+    <div class="send-button">
+        <button type="submit">Envoyer</button>
+    </div>
+</form>
+
+<script src="/js/storyCreate_check.js"></script>

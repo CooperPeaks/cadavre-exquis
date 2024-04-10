@@ -1,0 +1,196 @@
+/*************************************** General ********************************************************/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #F9F6F2;
+}
+
+h1 {
+    font-family: "Federo", sans-serif;
+}
+
+/******************************************* Navbar **********************************************************/
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #363636;
+    color: #F9F6F2;
+    padding: 10px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    height: 50px;
+}
+
+.logo-title {
+    font-family: "Federo", sans-serif;
+    margin: 5px;
+}
+
+.links-container {
+    display: flex;
+    align-items: center;
+}
+
+.links-container a {
+    text-decoration: none;
+    color: black;
+    background-color: #F9F6F2;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+.links-container a:hover {
+    background-color: #363636;
+    color: #F9F6F2;
+    border: 1px solid #F9F6F2;
+}
+
+/*********************************************************************** Home *********************************************/
+/******************** Main Pannel ******************/
+.intro-pannel {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.intro-pic img {
+    width: 600px;
+}
+
+/* Read Pannel */
+.read-pannel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.read-pannel .col-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.read-pannel img {
+    width: 300px;
+}
+
+.read-pannel .col-2 {
+    display: flex;
+    align-items: center;
+}
+
+/*********************************************** Story Create *****************************************************************/
+/* Title */
+.page-title {
+    display: flex;
+    justify-content: center;
+}
+
+/* Inputs */
+.article-title {
+    margin: 10px;
+}
+
+.article-genre {
+    margin: 10px
+}
+
+/* Text-Area */
+.article-content {
+    display: flex;
+    justify-content: center;
+}
+
+.story-attributes {
+    display: flex;
+    justify-content: center;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Button */
+.send-button {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/******************************************* Story List *********************************************************************/
+.list-pannel {
+    display: flex;
+}
+
+.article-sample {
+    display: flex;
+}
+
+.article-infos {
+    display: flex;
+}
+
+.article-infos p {
+    margin: 10px;
+}
+
+/************************************************* User log ***************************************************************/
+.log-title {
+    display: flex;
+    justify-content: center;
+    /* background-color: #363636;
+    color: #F9F6F2; */
+}
+
+.log-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.username {
+    margin: 10px;
+}
+
+.password {
+    margin: 10px;
+}
+
+/****************************************************** User Register ****************************************************/
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-form div {
+    margin: 10px;
+}
+
+.register-form button {
+    margin: 10px;
+}
+
+/****************************************************** User-account ****************************************************/
+.perso .ac-username {
+    display: flex;
+}
+
+.perso .ac-password {
+    display: flex;
+}
+
+.perso .ac-email {
+    display: flex;
+}
