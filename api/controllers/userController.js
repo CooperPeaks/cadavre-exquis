@@ -50,6 +50,10 @@ module.exports = {
             res.redirect('/')
         }
     },
+    logout: (req, res) => {
+        req.session.destroy()
+        res.redirect('/')
+    },
     getAccount: (req, res) => {
         res.render('user_account')
     },

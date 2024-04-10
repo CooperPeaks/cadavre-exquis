@@ -44,6 +44,9 @@ router.route('/user/log')
     .get(userController.getLogin)
     .post(userController.postLogin)
 
+router.route('/user/logout')
+    .get(userController.logout)
+
 router.route('/user/account')
     .get(userController.getAccount)
 
