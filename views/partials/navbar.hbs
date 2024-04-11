@@ -6,9 +6,14 @@
         <div class="logo-title">KADAVRESKY</div>
     </div>
     <div class="links-container">
+        <p>Bonjour {{username}} </p>
         <a href="/story/create">Ecrire un article</a>
         <a href="/story/list">Lire les articles</a>
-        <a href="/user/log">Se connecter</a>
+        {{#if username}}
+            <a href="/user/logout">Se déconnecter</a>
+        {{else}}
+            <a href="/user/log">Se connecter</a>
+        {{/if}}
         <a href="/user/register">S'inscrire</a>
     </div>
 </nav>

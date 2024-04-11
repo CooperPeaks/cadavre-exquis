@@ -31,16 +31,21 @@ router.route('/story/create')
 router.route('/story/list')
     .get(storyController.list)
 
-router.route('/story/read')
+router.route('/story/read/:id')
     .get(storyController.read)
 
 
 // User routes
 router.route('/user/register')
     .get(userController.get)
+    .post(userController.post)
 
 router.route('/user/log')
-    .get(userController.log)
+    .get(userController.getLogin)
+    .post(userController.postLogin)
+
+router.route('/user/logout')
+    .get(userController.logout)
 
 router.route('/user/account')
     .get(userController.getAccount)

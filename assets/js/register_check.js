@@ -1,10 +1,9 @@
 function RegisterCheck() {
     // Retrieve form values
-    let username = document.getElementById("re-username").value.trim();
-    let email = document.getElementById("re-email").value.trim();
-    let password = document.getElementById("re-password").value.trim();
-    let confPassword = document.getElementById("re-confPass").value.trim();
-    let button = document.querySelector('button')
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    let confPassword = document.getElementById("confPass").value.trim();
 
     // Regex create
     let checkUsername = /^.{2,}$/;
@@ -22,10 +21,10 @@ function RegisterCheck() {
         return false
     }
     // Test password regex
-    // else if (!checkPassword.test(password)) {
-    //     alert("Le mot de passe doit comporter au moins...")
-    //     return false
-    // }
+    else if (!checkPassword.test(password)) {
+        alert("Le mot de passe doit comporter au moins...")
+        return false
+    }
     // Password = true
     else {
         console.log("mdp ok");
