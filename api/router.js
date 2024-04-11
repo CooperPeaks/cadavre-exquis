@@ -53,4 +53,9 @@ router.route('/user/account')
 router.route('/user/admin')
     .get(userController.getAdmin)
 
+// Genre Routes
+router.route('/genre/create')
+    .get(genreController.createGenre)
+    .post(genreController.postGenre)
+
 module.exports = router

@@ -1,9 +1,11 @@
+const Genre = require('../models/genreModel')
 const Story = require('../models/storyModel')
 const { validationResult } = require('express-validator')
 
 module.exports = {
-    get: (req, res) => {
-        res.render('story_create')
+    get: async (req, res) => {
+        const genres = await Genre.findAll({ raw: true })
+        res.render('story_create', { genres })
     },
     postStory: async (req, res) => {
         try {
@@ -14,7 +16,8 @@ module.exports = {
             else {
                 const newStory = await Story.create({
                     title: req.body.title,
-                    content: req.body.articleContent
+                    content: req.body.articleContent,
+                    genreId: req.body.genreId
                 })
                 console.log("Histoire créée", newStory);
                 return res.redirect("/story/list")
@@ -28,8 +31,9 @@ module.exports = {
 
     list: async (req, res) => {
         const stories = await Story.findAll({ raw: true });
+        const genres = await Genre.findAll({ raw: true })
         console.log(stories);
-        res.render('story_list', { stories })
+        res.render('story_list', { stories, genres })
     },
 
     read: async (req, res) => {

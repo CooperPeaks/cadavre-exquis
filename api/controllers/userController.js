@@ -1,4 +1,3 @@
-const { raw } = require('mysql2')
 const User = require('../models/userModel')
 const { Op } = require('sequelize')
 

@@ -1,5 +1,6 @@
 const {DataTypes} = require('sequelize')
 const config = require('../../config')
+const Genre = require('./genreModel')
 
 const Story = config.sequelize.define('stories', {
     id: {
@@ -23,5 +24,7 @@ const Story = config.sequelize.define('stories', {
     //     defaultValue: false
     // }
 })
+
+Story.belongsTo(Genre)
 
 module.exports = Story

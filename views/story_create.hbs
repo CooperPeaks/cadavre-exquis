@@ -10,12 +10,11 @@
         </div>
 
         <div class="article-genre">
-            <label for="genre">Genre</label>
-            <select name="Genre" id="genre">
-                <option value="policier">Policier</option>
-                <option value="sciFi">Science-fiction</option>
-                <option value="fantasy">Fantasy</option>
-                <option value="free">Thème libre</option>
+            <label for="genreId">Genre</label>
+            <select name="genreId" id="genreId">
+                {{#each genres}}
+                    <option value="{{id}}"> {{genre_name}} </option>
+                {{/each}}
             </select>
         </div>
     </div>
