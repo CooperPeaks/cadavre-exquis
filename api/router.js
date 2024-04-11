@@ -31,7 +31,7 @@ router.route('/story/create')
 router.route('/story/list')
     .get(storyController.list)
 
-router.route('/story/read')
+router.route('/story/read/:id')
     .get(storyController.read)
 
 

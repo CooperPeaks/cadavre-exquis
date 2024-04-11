@@ -18,10 +18,10 @@ const Story = config.sequelize.define('stories', {
     // coverPicture: {
     //     type: DataTypes.STRING
     // },
-    isFinished: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-    }
+    // isFinished: {
+    //     type: DataTypes.BOOLEAN,
+    //     defaultValue: false
+    // }
 })
 
 module.exports = Story

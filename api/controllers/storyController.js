@@ -32,7 +32,13 @@ module.exports = {
         res.render('story_list', { stories })
     },
 
-    read: (req, res) => {
-        res.render('story_read')
-    }
+    read: async (req, res) => {
+        let story = await Story.findByPk(req.params.id)
+        if (story) {
+            story = story.toJSON();
+            res.render('story_read', { story })
+        } else {
+            res.status(404).send('Article not found');
+        }
+    },
 }
