@@ -2,9 +2,11 @@ const User = require('../models/userModel')
 const { Op } = require('sequelize')
 
 module.exports = {
+    // Display register page
     get: (req, res) => {
         res.render('user_create')
     },
+    // Allow visitor to create account
     post: async (req, res) => {
         if (req.body.password !== req.body.confPass || req.body.password === "") {
             const error = "Le mot de passe ne correspond pas"
@@ -33,6 +35,7 @@ module.exports = {
             }
         }
     },
+    // Display log page
     getLogin: (req, res) => {
         res.render('user_log')
     },

@@ -1,6 +1,7 @@
 const Genre = require('../models/genreModel')
 const Story = require('../models/storyModel')
 const { validationResult } = require('express-validator')
+const User = require('../models/userModel')
 
 module.exports = {
     get: async (req, res) => {
@@ -14,10 +15,12 @@ module.exports = {
                 return res.render('story_create', { errors: errors.array() })
             }
             else {
+                const user = await User.findOne({ where: { username: req.session.username } })
                 const newStory = await Story.create({
                     title: req.body.title,
                     content: req.body.articleContent,
-                    genreId: req.body.genreId
+                    genreId: req.body.genreId,
+                    userId : user.id
                 })
                 console.log("Histoire créée", newStory);
                 return res.redirect("/story/list")

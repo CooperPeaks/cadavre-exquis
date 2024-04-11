@@ -6,15 +6,15 @@
         <div class="logo-title">KADAVRESKY</div>
     </div>
     <div class="links-container">
-        <p>Bonjour {{username}} </p>
         <a href="/story/create">Ecrire un article</a>
         <a href="/story/list">Lire les articles</a>
         {{#if username}}
-            <a href="/user/logout">Se déconnecter</a>
+        <a href="/user/account">Mon compte</a>
+        <a href="/user/logout">Se déconnecter</a>
         {{else}}
-            <a href="/user/log">Se connecter</a>
-        {{/if}}
+        <a href="/user/log">Se connecter</a>
         <a href="/user/register">S'inscrire</a>
+        {{/if}}
         <a href="/genre/create">Genre Create</a>
     </div>
 </nav>

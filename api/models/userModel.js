@@ -27,8 +27,8 @@ const User = config.sequelize.define('users', {
     }
 })
 
-// User.hasMany(Story)
-// Story.belongsTo(User)
+User.hasMany(Story)
+Story.belongsTo(User)
 
 
 module.exports = User
