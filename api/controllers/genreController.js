@@ -16,7 +16,7 @@ module.exports = {
                 where: { genre_name: req.body.genre_name }
             }, {
                 where: { id: req.params.id }
-            })
+            }, {raw: true})
             console.log("Correspondance trouvé", genreMatch);
 
             if (genreMatch !== null) {

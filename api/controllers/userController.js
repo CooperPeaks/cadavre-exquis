@@ -1,3 +1,4 @@
+const Genre = require('../models/genreModel')
 const Story = require('../models/storyModel')
 const User = require('../models/userModel')
 const { Op } = require('sequelize')
@@ -50,6 +51,7 @@ module.exports = {
             res.redirect('/user/register')
         } else {
             req.session.username = user.username
+            req.session.uId = user.id
             // If admin 
             if(user.isAdmin) {
                 req.session.isAdmin = true
@@ -67,13 +69,15 @@ module.exports = {
             where: {
                 userId: user.id
             },
+            include: [{model: Genre}],
             raw: true
         })
         console.log(stories, stories.title);
         stories.forEach(story => {console.log(story.title);})
         res.render('user_account', { user, stories })
     },
-    getAdmin: (req, res) => {
-        res.render('admin_account')
+    getAdmin: async (req, res) => {
+        const users = await User.findAll({raw: true})
+        res.render('admin_account', {users})
     }
 }

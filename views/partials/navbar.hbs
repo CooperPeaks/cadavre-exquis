@@ -8,6 +8,9 @@
     <div class="links-container">
         <a href="/story/create">Ecrire un article</a>
         <a href="/story/list">Lire les articles</a>
+        {{#if isAdmin}}
+        <a href="/user/admin">Administration</a>
+        {{/if}}
         {{#if username}}
         <a href="/user/account">Mon compte</a>
         <a href="/user/logout">Se déconnecter</a>
@@ -15,6 +18,8 @@
         <a href="/user/log">Se connecter</a>
         <a href="/user/register">S'inscrire</a>
         {{/if}}
+        {{#if isAdmin}}
         <a href="/genre/create">Genre Create</a>
+        {{/if}}
     </div>
 </nav>

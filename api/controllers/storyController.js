@@ -33,7 +33,9 @@ module.exports = {
     },
 
     list: async (req, res) => {
-        const stories = await Story.findAll({ raw: true });
+        const stories = await Story.findAll({ 
+            include: [{model: Genre}],
+            raw: true });
         const genres = await Genre.findAll({ raw: true })
         console.log(stories);
         res.render('story_list', { stories, genres })
