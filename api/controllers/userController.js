@@ -50,6 +50,10 @@ module.exports = {
             res.redirect('/user/register')
         } else {
             req.session.username = user.username
+            // If admin 
+            if(user.isAdmin) {
+                req.session.isAdmin = true
+            }
             res.redirect('/')
         }
     },

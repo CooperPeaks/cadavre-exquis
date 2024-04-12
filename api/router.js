@@ -8,6 +8,8 @@ const storyController = require('./controllers/storyController')
 const chapterController = require('./controllers/chapterController')
 const genreController = require('./controllers/genreController')
 
+const isAdminMiddleware = require('./middlewares/isAdmin')
+const isLogMiddleware = require('./middlewares/isLog')
 
 router.route('/')
     .get(homeController.get)
