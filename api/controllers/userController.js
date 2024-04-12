@@ -1,3 +1,4 @@
+const Story = require('../models/storyModel')
 const User = require('../models/userModel')
 const { Op } = require('sequelize')
 
@@ -56,8 +57,17 @@ module.exports = {
         req.session.destroy()
         res.redirect('/')
     },
-    getAccount: (req, res) => {
-        res.render('user_account')
+    getAccount: async (req, res) => {
+        const user = await User.findOne({where: {username: req.session.username}})
+        const stories = await Story.findAll({
+            where: {
+                userId: user.id
+            },
+            raw: true
+        })
+        console.log(stories, stories.title);
+        stories.forEach(story => {console.log(story.title);})
+        res.render('user_account', { user, stories })
     },
     getAdmin: (req, res) => {
         res.render('admin_account')
