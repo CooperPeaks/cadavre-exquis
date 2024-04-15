@@ -34,7 +34,7 @@ module.exports = {
 
     list: async (req, res) => {
         const stories = await Story.findAll({ 
-            include: [{model: Genre}],
+            include: [{model: Genre}, {model: User}],
             raw: true });
         const genres = await Genre.findAll({ raw: true })
         console.log(stories);
