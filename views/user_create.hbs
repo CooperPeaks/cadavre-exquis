@@ -3,13 +3,11 @@
 <form action="/user/register" method="post" class="register-form" onsubmit="return RegisterCheck()">
     <div class="username">
         <label for="username">Nom d'utilisateur</label>
-        <input name="username" type="text" id="username" placeholder="Entrez un nom d'utilisateur"
-            value="{{#if user}}{{user.username}}{{/if}}">
+        <input name="username" type="text" id="username" placeholder="Entrez un nom d'utilisateur">
     </div>
     <div class="email">
         <label for="email">Adresse email</label>
-        <input name="email" type="text" id="email" placeholder="Entrez une adresse email"
-            value="{{#if user}}{{user.email}}{{/if}}">
+        <input name="email" type="text" id="email" placeholder="Entrez une adresse email">
     </div>
     <div class="password">
         <label for="password">Mot de passe</label>

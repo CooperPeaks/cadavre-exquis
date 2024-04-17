@@ -36,6 +36,8 @@ router.route('/story/list')
 router.route('/story/read/:id')
     .get(storyController.read)
 
+router.route('/story/delete/:id')
+    .post(storyController.delete)
 
 // User routes
 router.route('/user/register')
@@ -54,6 +56,13 @@ router.route('/user/account')
 
 router.route('/user/admin')
     .get(userController.getAdmin)
+
+router.route('/user/delete/:id')
+    .post(userController.delete)
+
+router.route('/user/update/:id')
+    .get(userController.getUpdate)
+    .post(userController.postUpdate)
 
 // Genre Routes
 router.route('/genre/create')

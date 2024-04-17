@@ -20,7 +20,7 @@ module.exports = {
                     title: req.body.title,
                     content: req.body.articleContent,
                     genreId: req.body.genreId,
-                    userId : user.id
+                    userId: user.id
                 })
                 console.log("Histoire créée", newStory);
                 return res.redirect("/story/list")
@@ -33,9 +33,10 @@ module.exports = {
     },
 
     list: async (req, res) => {
-        const stories = await Story.findAll({ 
-            include: [{model: Genre}, {model: User}],
-            raw: true });
+        const stories = await Story.findAll({
+            include: [{ model: Genre }, { model: User }],
+            raw: true
+        });
         const genres = await Genre.findAll({ raw: true })
         console.log(stories);
         res.render('story_list', { stories, genres })
@@ -50,4 +51,12 @@ module.exports = {
             res.status(404).send('Article not found');
         }
     },
+
+    delete: async (req, res) => {
+        await Story.destroy(
+            {
+                where: { id: req.params.id }
+            })
+        res.redirect("/user/admin")
+    }
 }

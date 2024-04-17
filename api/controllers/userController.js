@@ -53,7 +53,7 @@ module.exports = {
             req.session.username = user.username
             req.session.uId = user.id
             // If admin 
-            if(user.isAdmin) {
+            if (user.isAdmin) {
                 req.session.isAdmin = true
             }
             res.redirect('/')
@@ -64,20 +64,45 @@ module.exports = {
         res.redirect('/')
     },
     getAccount: async (req, res) => {
-        const user = await User.findOne({where: {username: req.session.username}})
+        const user = await User.findOne({ where: { username: req.session.username }, raw: true })
         const stories = await Story.findAll({
             where: {
                 userId: user.id
             },
-            include: [{model: Genre}],
+            include: [{ model: Genre }],
             raw: true
         })
-        console.log(stories, stories.title);
-        stories.forEach(story => {console.log(story.title);})
         res.render('user_account', { user, stories })
     },
     getAdmin: async (req, res) => {
-        const users = await User.findAll({raw: true})
-        res.render('admin_account', {users})
+        const user = await User.findAll({ raw: true })
+        const stories = await Story.findAll({
+            include: [{ model: Genre }, { model: User }],
+            raw: true
+        })
+        res.render('admin_account', { user, stories })
+    },
+    delete: async (req, res) => {
+        await User.destroy({ where: { id: req.params.id } })
+        res.redirect('/user/admin')
+    },
+    getUpdate: async (req, res) => {
+        const user = await User.findByPk(req.params.id, { raw: true })
+        res.render("user_update", { user })
+    },
+    postUpdate: async(req, res) => {
+        await User.update({
+            username: req.body.username,
+            email: req.body.email
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
+
+        // Update username in session
+        req.session.username = req.body.username;
+
+        res.redirect('/')
     }
 }

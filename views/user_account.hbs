@@ -32,19 +32,13 @@
     <div class="perso">
         <h2>Mes informations</h2>
         <div class="ac-username">
-            <p>Nom d'utilisateur :</p>
-            <p>Username</p>
-            <button><a href="">Modifier</a></button>
-        </div>
-        <div class="ac-password">
-            <p>Mot de passe :</p>
-            <p>Mot de passe caché</p>
-            <button><a href="">Modifier</a></button>
+            <p>Nom d'utilisateur : </p>
+            <p> {{username}} </p>
         </div>
         <div class="ac-email">
-            <p>Email :</p>
-            <p>Email</p>
-            <button><a href="">Modifier</a></button>
+            <p>Email : </p>
+            <p> {{user.email}} </p>
         </div>
+        <button><a href="/user/update/{{user.id}}">Modifier mes informations</a></button>
     </div>
 </div>

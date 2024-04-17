@@ -3,32 +3,79 @@
 </div>
 
 <div class="users-manage">
-    <h2>Liste utilisateurs</h2>
-    <table class="users-table">
+    <div class="users-list">
+        <h2>Liste utilisateurs</h2>
+        <input type="text" placeholder="Rechercher un utilisateur">
+        <table class="users-table">
+            <thead>
+                <tr>
+                    <th scope="col">Nom d'utilisateur</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each user}}
+                <tr>
+                    <td> {{username}} </th>
+                    <td> {{email}} </td>
+                    <td>
+                        <button><a href="">Modifier</a></button>
+                    </td>
+                    <td>
+                        <form action="/user/delete/{{id}}" method="post">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="stories-list">
+    <h2>Liste histoires</h2>
+    <input type="text" placeholder="Rechercher une histoire">
+    <table class="stories-table">
         <thead>
             <tr>
-                <th scope="col">Nom d'utilisateur</th>
-                <th scope="col">Email</th>
-                <th scope="col">Modifier</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Lire</th>
                 <th scope="col">Supprimer</th>
             </tr>
         </thead>
         <tbody>
-            {{#each users}}
+            {{#each stories}}
             <tr>
-                <th scope="row"> {{username}} </th>
-                <td> {{email}} </td>
+                <td> {{title}} </td>
+                <td> {{'user.username'}} </td>
+                <td> {{'genre.genre_name'}} </td>
                 <td>
-                    <button><a href="">Modifier</a></button>
+                    <button><a href="/story/read/{{id}}">Lire</a></button>
                 </td>
                 <td>
-                    <form action="" method="post">
-                        <button type="submit"><a href="">Supprimer</a></button>
+                    <form action="/story/delete/{{id}}" method="post">
+                        <button type="submit">Supprimer</button>
                     </form>
                 </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+</div>
 
+<div class="genre-create">
+    <h2>Ajouter un genre</h2>
+    <form action="/genre/create" method="post">
+        <div class="create-container">
+            <label for="genreName">Créer un nouveau genre</label>
+            <input type="text" name="genre_name" id="genre_name">
+            <button>Envoyer</button>
+        </div>
+    </form>
 </div>

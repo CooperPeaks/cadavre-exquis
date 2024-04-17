@@ -1,0 +1,15 @@
+<h1>Coucou user update</h1>
+
+<form action="/user/update/{{user.id}}" method="post">
+    <div class="username">
+        <label for="username">Nom d'utilisateur</label>
+        <input name="username" type="text" id="username" value="{{user.username}}">
+    </div>
+
+    <div class="email">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="{{user.email}}">
+    </div>
+
+    <button type="submit">Modifier</button>
+</form>
