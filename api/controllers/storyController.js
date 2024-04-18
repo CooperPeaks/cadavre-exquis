@@ -2,6 +2,7 @@ const Genre = require('../models/genreModel')
 const Story = require('../models/storyModel')
 const { validationResult } = require('express-validator')
 const User = require('../models/userModel')
+const Chapter = require('../models/chapterModel')
 
 module.exports = {
     get: async (req, res) => {
@@ -43,7 +44,9 @@ module.exports = {
     },
 
     read: async (req, res) => {
-        let story = await Story.findByPk(req.params.id)
+        let story = await Story.findByPk(req.params.id, {
+            include: [{ model: Chapter, separate: true, include: User }, { model: User }],
+        })
         if (story) {
             story = story.toJSON();
             res.render('story_read', { story })

@@ -2,6 +2,7 @@ const {DataTypes} = require('sequelize')
 const bcrypt = require('bcrypt')
 const config = require('../../config')
 const Story = require('./storyModel')
+const Chapter = require('./chapterModel')
 
 const User = config.sequelize.define('users', {
     id: {
@@ -26,6 +27,9 @@ const User = config.sequelize.define('users', {
         defaultValue: false
     }
 })
+
+User.hasMany(Chapter)
+Chapter.belongsTo(User)
 
 User.hasMany(Story)
 Story.belongsTo(User)

@@ -1,5 +1,6 @@
 const {DataTypes} = require('sequelize')
 const config = require('../../config')
+const Story = require('./storyModel')
 
 const Chapter = config.sequelize.define('chapters', {
     id: {
@@ -12,5 +13,8 @@ const Chapter = config.sequelize.define('chapters', {
         allowNull: false
     }
 })
+
+Story.hasMany(Chapter)
+Chapter.belongsTo(Story)
 
 module.exports = Chapter

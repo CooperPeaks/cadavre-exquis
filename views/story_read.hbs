@@ -1,12 +1,28 @@
 <div class="page-title">
     <h1> {{story.title}} </h1>
+    <h2>Ecrit par {{story.user.username}} </h2>
 </div>
 
 <div class="story-read">
     <div class="story-content">
         <p> {{story.content}} </p>
     </div>
-    <div class="story-input">
-        <button>Ajouter un chapitre</button>
+
+    <div class="story-chapters">
+        <ul>
+            {{#each story.chapters}}
+                <li class="chapters-container">
+                    {{content}}
+                    <span>Ecrit par {{user.username}} </span>
+                </li>
+            {{/each}}
+        </ul>
     </div>
+
+    <form action="/chapter/create/{{story.id}}" method="post">
+        <label for="chapter"></label>
+        <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Ajouter votre chapitre"></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+
 </div>

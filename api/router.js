@@ -64,6 +64,10 @@ router.route('/user/update/:id')
     .get(userController.getUpdate)
     .post(userController.postUpdate)
 
+// Chapter Routes
+router.route('/chapter/create/:storyId')
+        .post(isLogMiddleware, chapterController.post)
+
 // Genre Routes
 router.route('/genre/create')
     .get(genreController.createGenre)
