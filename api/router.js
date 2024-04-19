@@ -39,6 +39,10 @@ router.route('/story/read/:id')
 router.route('/story/delete/:id')
     .post(storyController.delete)
 
+router.route('/story/finish/:id')
+    .post(storyController.endingUpdate)
+
+
 // User routes
 router.route('/user/register')
     .get(userController.get)

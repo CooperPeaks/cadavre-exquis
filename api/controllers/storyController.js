@@ -23,7 +23,7 @@ module.exports = {
                     genreId: req.body.genreId,
                     userId: user.id
                 })
-                console.log("Histoire créée", newStory);
+                console.log("Histoire créée", newStory, "Bool story :" + newStory.isFinished);
                 return res.redirect("/story/list")
             }
         }
@@ -61,5 +61,11 @@ module.exports = {
                 where: { id: req.params.id }
             })
         res.redirect("/user/admin")
+    },
+
+    endingUpdate: async (req, res) => {
+        const story = await Story.findByPk(req.params.id)
+        await story.update({isFinished: true})
+        console.log(story.isFinished);
     }
 }

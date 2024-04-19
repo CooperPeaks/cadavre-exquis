@@ -3,6 +3,8 @@
     <h2>Ecrit par {{story.user.username}} </h2>
 </div>
 
+
+
 <div class="story-read">
     <div class="story-content">
         <p> {{story.content}} </p>
@@ -11,16 +13,23 @@
     <div class="story-chapters">
         <ul>
             {{#each story.chapters}}
-                <li class="chapters-container">
-                    {{content}}
-                    <span>Ecrit par {{user.username}} </span>
-                </li>
+            <li class="chapters-container">
+                {{content}}
+                <span>Ecrit par {{user.username}} </span>
+            </li>
             {{/each}}
         </ul>
     </div>
 
+{{#ifCond story.user.username username}}
+    <form action="/story/finish/{{story.id}}" method="post">
+        <label for="finished">Déclarer votre histoire comme terminé ?</label>
+        <input type="checkbox" id="finished" name="finished">
+        <button type="submit">Envoyer</button>
+    </form>
+{{/ifCond}}
+
     <form action="/chapter/create/{{story.id}}" method="post">
-        <label for="chapter"></label>
         <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Ajouter votre chapitre"></textarea>
         <button type="submit">Envoyer</button>
     </form>
