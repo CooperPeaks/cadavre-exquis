@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize')
 const config = require('../../config')
 const Story = require('./storyModel')
+const User = require('./userModel')
 
 const Chapter = config.sequelize.define('chapters', {
     id: {

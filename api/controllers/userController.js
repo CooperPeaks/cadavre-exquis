@@ -91,6 +91,7 @@ module.exports = {
         res.render("user_update", { user })
     },
     postUpdate: async(req, res) => {
+        const user = await User.findOne({ where: { username: req.session.username }, raw: true })
         await User.update({
             username: req.body.username,
             email: req.body.email
@@ -100,9 +101,13 @@ module.exports = {
             }
         })
 
-        // Update username in session
-        req.session.username = req.body.username;
-
+        if (user.isAdmin) {
+            req.session.username = req.session.username
+        }
+        else {
+            // Update username in session
+            req.session.username = req.body.username;
+        }
         res.redirect('/')
     }
 }

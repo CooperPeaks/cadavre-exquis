@@ -64,8 +64,18 @@ module.exports = {
     },
 
     endingUpdate: async (req, res) => {
-        const story = await Story.findByPk(req.params.id)
-        await story.update({isFinished: true})
-        console.log(story.isFinished);
+        const story = await Story.findByPk(req.params.id, {include: Chapter})
+        const user = await User.findOne({where: {username: req.session.username}})
+        const chapters = story.chapters
+
+        const isWrittenByOther = chapters.some(chapter => chapter.userId !== user.id)
+        if(isWrittenByOther) {
+            await story.update({isFinished: true})
+            console.log(story.isFinished);
+        }
+        else {
+            console.log("Un utilisateur doit écrire au moins un chapitre avant que l'histoire ne soit terminée");
+        }
+
     }
 }

@@ -44,7 +44,11 @@
                 <div class="article-infos">
                     <p> {{'genre.genre_name'}} </p>
                     <p> {{'user.username'}} </p>
+                    {{#if isFinished}}
+                    <p>Histoire terminée</p>
+                    {{else}}
                     <p>En cours</p>
+                    {{/if}}
                     <button><a href="/story/read/{{id}}">Lire</a></button>
                 </div>
             </div>
