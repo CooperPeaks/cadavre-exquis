@@ -38,7 +38,17 @@
 
 <div class="stories-list">
     <h2>Liste histoires</h2>
-    <input type="text" placeholder="Rechercher une histoire">
+
+    <div class="search-bar">
+        <form action="/story/search" method="get">
+            <input type="search" placeholder="Search" name="searchBar">
+            <button type="submit">Chercher</button>
+        </form>
+    </div>
+
+{{#if storiesFilter}}
+    <h2>Coucou</h2>
+{{/if}}
     <table class="stories-table">
         <thead>
             <tr>

@@ -3,6 +3,7 @@ const Story = require('../models/storyModel')
 const { validationResult } = require('express-validator')
 const User = require('../models/userModel')
 const Chapter = require('../models/chapterModel')
+const { Op } = require('sequelize')
 
 module.exports = {
     get: async (req, res) => {
@@ -64,18 +65,34 @@ module.exports = {
     },
 
     endingUpdate: async (req, res) => {
-        const story = await Story.findByPk(req.params.id, {include: Chapter})
-        const user = await User.findOne({where: {username: req.session.username}})
+        const story = await Story.findByPk(req.params.id, { include: Chapter })
+        const user = await User.findOne({ where: { username: req.session.username } })
         const chapters = story.chapters
 
         const isWrittenByOther = chapters.some(chapter => chapter.userId !== user.id)
-        if(isWrittenByOther) {
-            await story.update({isFinished: true})
+        if (isWrittenByOther) {
+            await story.update({ isFinished: true })
             console.log(story.isFinished);
         }
         else {
             console.log("Un utilisateur doit écrire au moins un chapitre avant que l'histoire ne soit terminée");
         }
+    },
 
+    search: async (req, res) => {
+        const searchStory = req.query.searchBar
+        const storiesFilter = await Story.findAll({
+            include: [{ model: Genre }, { model: User }],
+            where: {
+                title: { [Op.like]: `%${searchStory}%` }
+            }, raw: true
+        })
+
+        if (storiesFilter.length > 0) {
+            res.render('story_list', { storiesFilter })
+        } else {
+            res.render('story_list', { message: 'No exists' })
+        }
+        console.log(searchStory, storiesFilter);
     }
 }

@@ -2,6 +2,46 @@
     <h1>Des cadavres dans le placard</h1>
 </div>
 
+<div class="search-bar">
+    <form action="/story/search" method="get">
+        <input type="search" placeholder="Search" name="searchBar">
+        <button type="submit">Chercher</button>
+    </form>
+</div>
+
+{{#if storiesFilter}}
+ <div class="articles-pannel">
+        {{#each storiesFilter}}
+        <div class="article-title">
+            <h3> {{title}} </h5>
+        </div>
+        <div class="article-sample">
+            <div class="col-1">
+                <div class="article-cover">
+                    <img src="/pictures/logo145.webp" alt="">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="article-resume">
+                    <h4>Incipit</h4>
+                    <p> {{content}} </p>
+                </div>
+                <div class="article-infos">
+                    <p> {{'genre.genre_name'}} </p>
+                    <p> {{'user.username'}} </p>
+                    {{#if isFinished}}
+                    <p>Histoire terminée</p>
+                    {{else}}
+                    <p>En cours</p>
+                    {{/if}}
+                    <button><a href="/story/read/{{id}}">Lire</a></button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+{{/if}}
+
 <div class="list-pannel">
     <div class="filter-pannel">
         <h2>Filtrer par :</h2>
