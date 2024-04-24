@@ -4,16 +4,27 @@
 
 <div class="search-bar">
     <form action="/story/search" method="get">
-        <input type="search" placeholder="Search" name="searchBar">
+        <input type="search" placeholder="Search" name="searchBar" id="searchBar">
         <button type="submit">Chercher</button>
     </form>
 </div>
 
 {{#if storiesFilter}}
- <div class="articles-pannel">
-        {{#each storiesFilter}}
+<input type="radio" name="option" value="titleRadio" id="titleRadio">
+<label for="titleRadio">Titre</label>
+
+<input type="radio" name="option" value="genreRadio" id="genreRadio">
+<label for="genreRadio">Genre</label><br>
+
+<input type="radio" name="option" value="authorRadio" id="authorRadio">
+<label for="authorRadio">Auteur</label><br>
+
+
+<div class="articles-pannel">
+    {{#each storiesFilter}}
+    <div class="story-full" id="storyFull">
         <div class="article-title">
-            <h3> {{title}} </h5>
+            <h3 class="story-title"> {{title}} </h3>
         </div>
         <div class="article-sample">
             <div class="col-1">
@@ -27,8 +38,8 @@
                     <p> {{content}} </p>
                 </div>
                 <div class="article-infos">
-                    <p> {{'genre.genre_name'}} </p>
-                    <p> {{'user.username'}} </p>
+                    <p class="genre-name" id="genreName"> {{'genre.genre_name'}} </p>
+                    <p class="author-name" id="authorName"> {{'user.username'}} </p>
                     {{#if isFinished}}
                     <p>Histoire terminée</p>
                     {{else}}
@@ -38,61 +49,40 @@
                 </div>
             </div>
         </div>
-        {{/each}}
     </div>
+    {{/each}}
+</div>
 {{/if}}
 
-<div class="list-pannel">
-    <div class="filter-pannel">
-        <h2>Filtrer par :</h2>
-        <div class="filter-inputs">
-            <div class="genre-filter">
-                <label for="genreId">Genre</label>
-                <select name="genreId" id="genreId">
-                    {{#each genres}}
-                    <option value="{{id}}"> {{genre_name}} </option>
-                    {{/each}}
-                </select>
+<div class="articles-pannel">
+    {{#each stories}}
+    <div class="article-title">
+        <h3> {{title}} </h3>
+    </div>
+    <div class="article-sample">
+        <div class="col-1">
+            <div class="article-cover">
+                <img src="/pictures/logo145.webp" alt="">
             </div>
-            <div class="author-filter">
-                <label for="author">Auteur</label>
-                <input type="text" id="author">
+        </div>
+        <div class="col-2">
+            <div class="article-resume">
+                <h4>Incipit</h4>
+                <p> {{content}} </p>
             </div>
-            <div class="title-filter">
-                <label for="articleTitle">Titre</label>
-                <input type="text" id="articleTitle">
+            <div class="article-infos">
+                <p> {{'genre.genre_name'}} </p>
+                <p> {{'user.username'}} </p>
+                {{#if isFinished}}
+                <p>Histoire terminée</p>
+                {{else}}
+                <p>En cours</p>
+                {{/if}}
+                <button><a href="/story/read/{{id}}">Lire</a></button>
             </div>
         </div>
     </div>
-
-    <div class="articles-pannel">
-        {{#each stories}}
-        <div class="article-title">
-            <h3> {{title}} </h5>
-        </div>
-        <div class="article-sample">
-            <div class="col-1">
-                <div class="article-cover">
-                    <img src="/pictures/logo145.webp" alt="">
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="article-resume">
-                    <h4>Incipit</h4>
-                    <p> {{content}} </p>
-                </div>
-                <div class="article-infos">
-                    <p> {{'genre.genre_name'}} </p>
-                    <p> {{'user.username'}} </p>
-                    {{#if isFinished}}
-                    <p>Histoire terminée</p>
-                    {{else}}
-                    <p>En cours</p>
-                    {{/if}}
-                    <button><a href="/story/read/{{id}}">Lire</a></button>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </div>
+    {{/each}}
 </div>
+
+<script id="searchQuery" data-value="{{searchQuery}}" src="/js/search_filter.js"></script>

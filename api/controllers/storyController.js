@@ -80,19 +80,23 @@ module.exports = {
     },
 
     search: async (req, res) => {
-        const searchStory = req.query.searchBar
+        const searchQuery = req.query.searchBar
         const storiesFilter = await Story.findAll({
             include: [{ model: Genre }, { model: User }],
             where: {
-                title: { [Op.like]: `%${searchStory}%` }
+                [Op.or]: [
+                    { title: { [Op.like]: `%${searchQuery}%` } },
+                    { '$genre.genre_name$': { [Op.like]: `%${searchQuery}%` } },
+                    { '$user.username$': { [Op.like]: `%${searchQuery}%` } }
+                ]
             }, raw: true
         })
 
         if (storiesFilter.length > 0) {
-            res.render('story_list', { storiesFilter })
+            res.render('story_list', { storiesFilter, searchQuery })
         } else {
             res.render('story_list', { message: 'No exists' })
         }
-        console.log(searchStory, storiesFilter);
+        console.log(storiesFilter);
     }
 }
