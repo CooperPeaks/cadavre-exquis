@@ -1,8 +1,8 @@
 const express = require('express')
-const {engine} = require('express-handlebars')
+const { engine } = require('express-handlebars')
 const session = require('express-session')
 var SequelizeStore = require("connect-session-sequelize")(session.Store);
-const path = require ('path')
+const path = require('path')
 
 const router = require('./api/router')
 const config = require('./config')
@@ -15,9 +15,9 @@ const MomentHandler = require("handlebars.moment")
 MomentHandler.registerHelpers(Handlebars)
 
 app.engine('hbs', engine({
-    extname: '.hbs', 
+    extname: '.hbs',
     helpers: {
-        ifCond: function(v1, v2, option) {
+        ifCond: function (v1, v2, option) {
             if (v1 === v2) {
                 return option.fn(this)
             }
@@ -30,7 +30,7 @@ app.set('view engine', 'hbs')
 app.use('/css', express.static(path.join(__dirname, 'assets/css')))
 app.use('/js', express.static(path.join(__dirname, 'assets/js')))
 app.use('/pictures', express.static(path.join(__dirname, 'views/pictures')))
-
+// For specific css
 
 try {
     config.sequelize.authenticate();
