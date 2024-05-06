@@ -1,0 +1,49 @@
+.home-link {
+    background-color: #BAD2FF;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    width: 150px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.home-link:hover {
+    background-color: #a8c6ff;
+}
+
+/******************** Main Pannel ******************/
+.intro-pannel {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.intro-pic img {
+    width: 600px;
+}
+
+/* Read Pannel */
+.read-pannel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.read-pannel .col-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.read-pannel img {
+    width: 300px;
+}
+
+.read-pannel .col-2 {
+    display: flex;
+    align-items: center;
+}

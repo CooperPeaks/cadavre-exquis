@@ -28,3 +28,6 @@ const Story = config.sequelize.define('stories', {
 Story.belongsTo(Genre)
 
 module.exports = Story
+
+
+

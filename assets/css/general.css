@@ -3,20 +3,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Josefin Sans", sans-serif;
-    background-color: #F9F6F2;
+    background-color: #F9F9F9;
 }
 
 h1 {
     font-family: "Federo", sans-serif;
 }
-
 /******************************************* Navbar **********************************************************/
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: #363636;
+    background-color: #F6F6F6;
     color: #F9F6F2;
     padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .logo-container {
@@ -26,6 +26,7 @@ nav {
 
 .logo-container img {
     height: 50px;
+    cursor: pointer;
 }
 
 .logo-title {
@@ -42,88 +43,14 @@ nav {
     text-decoration: none;
     color: black;
     background-color: #F9F6F2;
-    margin: 10px;
+    /* border: 1px solid black; */
     padding: 5px;
-    border: 1px solid black;
+    margin: 10px;
+    cursor: pointer;
 }
 
 .links-container a:hover {
-    background-color: #363636;
-    color: #F9F6F2;
-    border: 1px solid #F9F6F2;
-}
-
-/*********************************************************************** Home *********************************************/
-/******************** Main Pannel ******************/
-.intro-pannel {
-    padding: 20px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.intro-pic img {
-    width: 600px;
-}
-
-/* Read Pannel */
-.read-pannel {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.read-pannel .col-1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.read-pannel img {
-    width: 300px;
-}
-
-.read-pannel .col-2 {
-    display: flex;
-    align-items: center;
-}
-
-/*********************************************** Story Create *****************************************************************/
-/* Title */
-.page-title {
-    display: flex;
-    justify-content: center;
-}
-
-/* Inputs */
-.article-title {
-    margin: 10px;
-}
-
-.article-genre {
-    margin: 10px
-}
-
-/* Text-Area */
-.article-content {
-    display: flex;
-    justify-content: center;
-}
-
-.story-attributes {
-    display: flex;
-    justify-content: center;
-}
-
-textarea {
-    resize: none;
-}
-
-/* Button */
-.send-button {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
+    text-decoration: underline;
 }
 
 /******************************************* Story List *********************************************************************/
