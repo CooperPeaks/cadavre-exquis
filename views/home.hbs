@@ -4,25 +4,6 @@
     </div>
     <div class="intro-txt">
         <h1>KADAVRESKY</h1>
-        {{!-- <p>Plongez dans un monde où l'imagination n'a pas de limites et où chaque contribution crée une nouvelle
-            aventure. Inspiré par le célèbre jeu du "cadavre exquis", notre site vous invite à participer à la création
-            collaborative d'histoires fascinantes.
-            <br>
-            Comment ça marche ? C'est simple. Un utilisateur commence une histoire en écrivant un paragraphe, puis les
-            autres utilisateurs poursuivent en ajoutant leur propre paragraphe. Le résultat final ? Une œuvre littéraire
-            unique, tissée par la créativité collective de la communauté.
-            <br>
-            Que vous soyez un écrivain aguerri ou un amateur passionné, vous trouverez ici un espace pour exprimer votre
-            créativité et découvrir les idées des autres. Rejoignez-nous dans cette aventure littéraire où chaque
-            contribution compte et où chaque histoire est une surprise.
-            <br>
-            Prêt à plonger dans l'univers du cadavre exquis ? Commencez dès maintenant à écrire ou explorez les
-            histoires déjà créées par nos membres. Laissez-vous emporter par l'imagination et préparez-vous à vivre des
-            récits uniques et captivants.
-            <br>
-            Rejoignez-nous et laissez votre plume guider le voyage !
-
-        </p> --}}
         <h2>Découvrez l'art de l'écriture collaborative, où chaque contribution façonne une histoire unique</h2>
         <a href="/story/create" class="home-link">Commencer !</a>
     </div>
@@ -38,3 +19,23 @@
         <a href="/story/list" class="home-link">Lire</a>
     </div>
 </div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Se connecter</h2>
+        <form action="/user/log" method="post" class="log-form">
+            <div class="username">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" name="username" id="username" placeholder="Entrez votre nom d'utilisateur">
+            </div>
+            <div class="log-password">
+                <label for="password">Mot de passe</label>
+                <input type="text" name="password" id="password" placeholder="Entrez votre mot de passe">
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/modalScript.js"></script>

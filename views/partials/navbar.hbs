@@ -6,7 +6,9 @@
         <div class="logo-title">KADAVRESKY</div>
     </div>
     <div class="links-container">
+        {{#if username}}
         <a href="/story/create">Ecrire un article</a>
+        {{/if}}
         <a href="/story/list">Lire les articles</a>
         {{#if isAdmin}}
         <a href="/user/admin">Administration</a>

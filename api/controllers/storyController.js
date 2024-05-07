@@ -7,8 +7,16 @@ const { Op } = require('sequelize')
 
 module.exports = {
     get: async (req, res) => {
+        if (!req.session || !req.session.username) {
+            return res.render('home')
+        }
+        const user = await User.findOne({ where: { username: req.session.username } })
         const genres = await Genre.findAll({ raw: true })
-        res.render('story_create', { genres })
+        if (!user) {
+            return res.render('home')
+        } else {
+            res.render('story_create', { genres })
+        }
     },
     postStory: async (req, res) => {
         try {
@@ -17,6 +25,11 @@ module.exports = {
                 return res.render('story_create', { errors: errors.array() })
             }
             else {
+                const existingStory = await Story.findOne({ where: { title: req.body.title } })
+                if (existingStory) {
+                    return res.render('story_create', { error: 'Ce titre existe déjà', genres: await Genre.findAll({ raw: true }) })
+                }
+
                 const user = await User.findOne({ where: { username: req.session.username } })
                 const newStory = await Story.create({
                     title: req.body.title,
@@ -30,7 +43,7 @@ module.exports = {
         }
         catch (error) {
             console.error("Erreur lors de la création de l'histoire :", error);
-            return res.status(500).send("Une erreur est survenue lors de la création de l'histoire.");
+            return res.render('story_create', { logError: 'Vous devez être connecté pour publier une histoire', genres: await Genre.findAll({ raw: true }) });
         }
     },
 
