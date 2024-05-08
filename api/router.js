@@ -1,5 +1,5 @@
 const express = require('express')
-const {body, param} = require('express-validator')
+const { body, param } = require('express-validator')
 const router = express.Router()
 
 const homeController = require('./controllers/homeController')
@@ -13,6 +13,17 @@ const isLogMiddleware = require('./middlewares/isLog')
 
 router.route('/')
     .get(homeController.get)
+
+router.get('/check-authentication', (req, res) => {
+    if (req.session.username) {
+        // Utilisateur connecté
+        res.json({ authenticated: true });
+    } else {
+        // Utilisateur non connecté
+        res.json({ authenticated: false });
+    }
+});
+
 
 // Story routes
 router.route('/story/create')
@@ -72,7 +83,7 @@ router.route('/user/update/:id')
 
 // Chapter Routes
 router.route('/chapter/create/:storyId')
-        .post(isLogMiddleware, chapterController.post)
+    .post(isLogMiddleware, chapterController.post)
 
 // Genre Routes
 router.route('/genre/create')

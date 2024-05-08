@@ -7,11 +7,24 @@ var span = document.getElementsByClassName("close")[0];
 // Récupérer la modale
 var modal = document.getElementById("myModal");
 
-// Quand l'utilisateur clique sur le bouton, ouvre la modale
-btn.onclick = function (event) {
-    event.preventDefault(); // Annuler le comportement par défaut du lien
-    modal.style.display = "block";
+// Fonction pour vérifier l'état de l'authentification de l'utilisateur
+function checkAuthenticationStatus() {
+    fetch('/check-authentication') // Envoyer une requête vers la route de vérification d'authentification
+        .then(response => response.json())
+        .then(data => {
+            if (!data.authenticated) {
+                // Utilisateur non connecté : afficher la modale
+                btn.onclick = function (event) {
+                    event.preventDefault(); // Annuler le comportement par défaut du lien
+                    modal.style.display = "block";
+                }
+            }
+        })
+        .catch(error => console.error('Erreur lors de la vérification de l\'authentification:', error));
 }
+
+// Appeler la fonction de vérification de l'authentification lorsque le script est chargé
+window.onload = checkAuthenticationStatus;
 
 // Quand l'utilisateur clique sur <span> (x), ferme la modale
 span.onclick = function () {
