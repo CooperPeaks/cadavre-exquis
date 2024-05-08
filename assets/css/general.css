@@ -103,23 +103,6 @@ nav {
     cursor: pointer;
 }
 
-/******************************************* Story List *********************************************************************/
-.list-pannel {
-    display: flex;
-}
-
-.article-sample {
-    display: flex;
-}
-
-.article-infos {
-    display: flex;
-}
-
-.article-infos p {
-    margin: 10px;
-}
-
 /************************************************* User log ***************************************************************/
 .log-title {
     display: flex;

@@ -5,7 +5,7 @@
 // })
 
 function StoryCheck(event) {
-    event.preventDefault() // Empêcher le rechargement de la page
+    event.preventDefault() // Prevent page reloading
 
     let storyTitle = document.getElementById('title').value.trim()
     let storyContent = document.getElementById('articleContent').value.trim()
@@ -17,11 +17,10 @@ function StoryCheck(event) {
         alert("Le contenu de votre histoire doit comporter au moins x mots")
     }
     else {
-        // Si les vérifications sont réussies, vous pouvez soumettre le formulaire
-        // Vous pouvez accéder au formulaire avec event.target et utiliser submit()
+        // If checkings ok, submit form
         event.target.submit()
     }
 }
 
-// Ajoutez un écouteur d'événements sur le formulaire pour appeler StoryCheck() lorsqu'il est soumis
+// Add storyCheck to form
 document.querySelector('form').addEventListener('submit', StoryCheck);

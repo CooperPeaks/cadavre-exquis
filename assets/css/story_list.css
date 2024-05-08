@@ -1,0 +1,26 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+}
+
+/* Filter display */
+.articles-panFilter {
+    display: flex;
+}
+
+
+.list-pannel {
+    display: flex;
+}
+
+.article-sample {
+    display: flex;
+}
+
+.article-infos {
+    display: flex;
+}
+
+.article-infos p {
+    margin: 10px;
+}

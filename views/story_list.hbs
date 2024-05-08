@@ -6,64 +6,72 @@
     <div class="search-bar">
         <form action="/story/search" method="get">
             <input type="search" placeholder="Search" name="searchBar" id="searchBar">
-            <button type="submit">Chercher</button>
+            <button type="submit">Search</button>
         </form>
     </div>
 
-    {{#if storiesFilter}}
-    <div class="title-radio">
-        <input type="radio" name="option" value="titleRadio" id="titleRadio">
-        <label for="titleRadio">Titre</label>
-    </div>
-
-    <div class="genre-radio">
-        <input type="radio" name="option" value="genreRadio" id="genreRadio">
-        <label for="genreRadio">Genre</label><br>
-    </div>
-
-    <div class="author-radio">
-        <input type="radio" name="option" value="authorRadio" id="authorRadio">
-        <label for="authorRadio">Auteur</label><br>
-    </div>
 </div>
 
 
 
-<div class="articles-pannel">
-    {{#each storiesFilter}}
-    <div class="story-full" id="storyFull">
-        <div class="article-title">
-            <h3 class="story-title"> {{title}} </h3>
-        </div>
-        <div class="article-sample">
-            <div class="col-1">
-                <div class="article-cover">
-                    <img src="/pictures/logo145.webp" alt="">
-                </div>
+<div class="articles-panFilter">
+    {{#if storiesFilter}}
+    <div class="filter-block">
+        <div class="filter-opts">
+            <div class="title-radio">
+                <input type="radio" name="option" value="titleRadio" id="titleRadio">
+                <label for="titleRadio">Titre</label>
             </div>
-            <div class="col-2">
-                <div class="article-resume">
-                    <h4>Incipit</h4>
-                    <p> {{content}} </p>
-                </div>
-                <div class="article-infos">
-                    <p class="genre-name" id="genreName"> {{'genre.genre_name'}} </p>
-                    <p class="author-name" id="authorName"> {{'user.username'}} </p>
-                    {{#if isFinished}}
-                    <p>Histoire terminée</p>
-                    {{else}}
-                    <p>En cours</p>
-                    {{/if}}
-                    <a href="/story/read/{{id}}">Lire</a>
-                </div>
+
+            <div class="genre-radio">
+                <input type="radio" name="option" value="genreRadio" id="genreRadio">
+                <label for="genreRadio">Genre</label><br>
+            </div>
+
+            <div class="author-radio">
+                <input type="radio" name="option" value="authorRadio" id="authorRadio">
+                <label for="authorRadio">Auteur</label><br>
             </div>
         </div>
     </div>
-    {{/each}}
+
+    <div class="story-block">
+        {{#each storiesFilter}}
+        <div class="story-full" id="storyFull">
+            <div class="article-title">
+                <h3 class="story-title">
+                    <a href="/story/read/{{id}}">{{title}}</a>
+                </h3>
+            </div>
+            <div class="article-sample">
+                <div class="col-1">
+                    <div class="article-cover">
+                        <img src="/pictures/logo145.webp" alt="">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="article-resume">
+                        <h4>Incipit</h4>
+                        <p> {{content}} </p>
+                    </div>
+                    <div class="article-infos">
+                        <p class="genre-name" id="genreName"> {{'genre.genre_name'}} </p>
+                        <p class="author-name" id="authorName"> {{'user.username'}} </p>
+                        {{#if isFinished}}
+                        <p>Histoire terminée</p>
+                        {{else}}
+                        <p>En cours</p>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </div>
 {{/if}}
 
-<div class="articles-pannel">
+<div class="articles-pan">
     {{#each stories}}
     <div class="article-title">
         <h3>
