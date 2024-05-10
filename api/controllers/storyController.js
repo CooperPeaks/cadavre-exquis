@@ -18,6 +18,7 @@ module.exports = {
             res.render('story_create', { genres })
         }
     },
+    
     postStory: async (req, res) => {
         try {
             const errors = validationResult(req);

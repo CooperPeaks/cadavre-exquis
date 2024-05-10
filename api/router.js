@@ -16,10 +16,10 @@ router.route('/')
 
 router.get('/check-authentication', (req, res) => {
     if (req.session.username) {
-        // Utilisateur connecté
+        // Log user
         res.json({ authenticated: true });
     } else {
-        // Utilisateur non connecté
+        // Unlog user
         res.json({ authenticated: false });
     }
 });
@@ -28,14 +28,12 @@ router.get('/check-authentication', (req, res) => {
 // Story routes
 router.route('/story/create')
     .get(storyController.get)
-    .post(
+    .post(isLogMiddleware,
         body('title')
-            .exists()
             .notEmpty()
             .withMessage('Ce champ ne doit pas être vide')
             .escape(),
         body('articleContent')
-            .exists()
             .notEmpty()
             .withMessage('Ce champ ne doit pas être vide')
             .escape(),
