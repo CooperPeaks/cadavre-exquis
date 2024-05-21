@@ -3,6 +3,12 @@
     <h2>Ecrit par {{story.user.username}} </h2>
 </div>
 
+{{#if error}}
+<p>
+{{error}}
+</p>
+{{/if}}
+
 {{#if story.isFinished}}
 <div class="story-read">
     <div class="story-content">
@@ -22,6 +28,11 @@
 </div>
 {{else}}
 <div class="story-read">
+    {{#if showAlert}}
+        <script>
+            alert('Alerte')
+        </script>
+    {{/if}}
     <div class="story-content">
         <p> {{story.content}} </p>
     </div>
@@ -37,17 +48,18 @@
         </ul>
     </div>
 
+    {{#ifNotEqual story.user.username username}}    
+    <form action="/chapter/create/{{story.id}}" method="post">
+        <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Ajouter votre chapitre"></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+    {{/ifNotEqual}}
+
     {{#ifCond story.user.username username}}
     <form action="/story/finish/{{story.id}}" method="post">
         <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Terminez votre histoire"></textarea>
         <button type="submit">Envoyer</button>
     </form>
     {{/ifCond}}
-    
-    <form action="/chapter/create/{{story.id}}" method="post">
-        <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Ajouter votre chapitre"></textarea>
-        <button type="submit">Envoyer</button>
-    </form>
-
 </div>
 {{/if}}

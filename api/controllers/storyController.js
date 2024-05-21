@@ -18,7 +18,7 @@ module.exports = {
             res.render('story_create', { genres })
         }
     },
-    
+
     postStory: async (req, res) => {
         try {
             const errors = validationResult(req);
@@ -86,11 +86,18 @@ module.exports = {
         const isWrittenByOther = chapters.some(chapter => chapter.userId !== user.id)
         if (isWrittenByOther) {
             await story.update({ isFinished: true })
-            console.log(story.isFinished);
+
+            // Update story content
+            const updatedContent = story.content + "\n" + req.body.content;
+            await story.update({content : updatedContent})
+            console.log(story.isFinished, story.content);
+
+            res.redirect('/story/read/' + req.params.id)
         }
-        else {
+        else {    
             console.log("Un utilisateur doit écrire au moins un chapitre avant que l'histoire ne soit terminée");
         }
+
     },
 
     search: async (req, res) => {

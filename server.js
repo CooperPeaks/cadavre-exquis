@@ -13,6 +13,9 @@ const port = 3000
 const Handlebars = require("handlebars")
 const MomentHandler = require("handlebars.moment")
 MomentHandler.registerHelpers(Handlebars)
+Handlebars.registerHelper("ifNotEqual", function(val1, val2, options){
+    return val1 !== val2 ? options.fn(this) : options.inverse(this);
+})
 
 app.engine('hbs', engine({
     extname: '.hbs',
@@ -22,7 +25,8 @@ app.engine('hbs', engine({
                 return option.fn(this)
             }
             return option.inverse(this)
-        }
+        },
+        ifNotEqual: Handlebars.helpers.ifNotEqual
     }
 }))
 app.set('view engine', 'hbs')
