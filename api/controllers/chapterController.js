@@ -20,6 +20,11 @@ module.exports = {
             const updatedContent = existingStory.content + `\n` + chapter.content;
             await Story.update({ content: updatedContent }, { where: { id: req.params.storyId } })
             console.log(req.body, chapter.userId, updatedContent, existingStory);
+
+            return res.render('story_read', {
+                story: existingStory,
+                hasNewChapter: true,
+            });
         }
         res.redirect('back')
     }

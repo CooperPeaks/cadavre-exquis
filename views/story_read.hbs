@@ -4,9 +4,7 @@
 </div>
 
 {{#if error}}
-<p>
-{{error}}
-</p>
+<p>{{error}}</p>
 {{/if}}
 
 {{#if story.isFinished}}
@@ -15,40 +13,46 @@
         <p> {{story.content}} </p>
     </div>
 
+    {{#if isAdmin}}
     <div class="story-chapters">
         <ul>
             {{#each story.chapters}}
             <li class="chapters-container">
                 {{content}}
                 <span>Ecrit par {{user.username}} </span>
+                <form action="/chapter/delete/{{id}}" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
             </li>
             {{/each}}
         </ul>
     </div>
+    {{/if}}
 </div>
 {{else}}
 <div class="story-read">
-    {{#if showAlert}}
-        <script>
-            alert('Alerte')
-        </script>
-    {{/if}}
     <div class="story-content">
         <p> {{story.content}} </p>
     </div>
 
+    {{#if isAdmin}}
     <div class="story-chapters">
         <ul>
             {{#each story.chapters}}
             <li class="chapters-container">
                 {{content}}
                 <span>Ecrit par {{user.username}} </span>
+                <form action="/chapter/delete/{{id}}" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
+
             </li>
             {{/each}}
         </ul>
     </div>
+    {{/if}}
 
-    {{#ifNotEqual story.user.username username}}    
+    {{#ifNotEqual story.user.username username}}
     <form action="/chapter/create/{{story.id}}" method="post">
         <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Ajouter votre chapitre"></textarea>
         <button type="submit">Envoyer</button>
@@ -56,10 +60,16 @@
     {{/ifNotEqual}}
 
     {{#ifCond story.user.username username}}
-    <form action="/story/finish/{{story.id}}" method="post">
+    <form action="/story/finish/{{story.id}}" method="post" onsubmit="return endingCheck()">
         <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Terminez votre histoire"></textarea>
         <button type="submit">Envoyer</button>
     </form>
     {{/ifCond}}
 </div>
 {{/if}}
+
+{{#if hasNewChapter}}
+<p></p>
+{{/if}}
+
+<script src="/js/storyRead_check.js"></script>
