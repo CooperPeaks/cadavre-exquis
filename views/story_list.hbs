@@ -1,106 +1,108 @@
-<div class="page-title">
-    <h1>Des cadavres dans le placard</h1>
-</div>
-
-<div class="filter-pannel">
-    <div class="search-bar">
-        <form action="/story/search" method="get">
-            <input type="search" placeholder="Search" name="searchBar" id="searchBar">
-            <button type="submit">Search</button>
-        </form>
+<div class="container-fluid">
+    <div class="row">
+        <h1 class="text-center">Des cadavres dans le placard</h1>
     </div>
 
-</div>
+    {{!-- <div class="filter-pannel">
+        <div class="search-bar">
+            <form action="/story/search" method="get">
+                <input type="search" placeholder="Search" name="searchBar" id="searchBar">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div> --}}
 
 
 
-<div class="articles-panFilter">
-    {{#if storiesFilter}}
-    <div class="filter-block">
-        <div class="filter-opts">
-            <div class="title-radio">
-                <input type="radio" name="option" value="titleRadio" id="titleRadio">
-                <label for="titleRadio">Titre</label>
-            </div>
+    <div class="articles-panFilter">
+        {{#if storiesFilter}}
+        <div class="filter-block">
+            <div class="filter-opts">
+                <div class="title-radio">
+                    <input type="radio" name="option" value="titleRadio" id="titleRadio">
+                    <label for="titleRadio">Titre</label>
+                </div>
 
-            <div class="genre-radio">
-                <input type="radio" name="option" value="genreRadio" id="genreRadio">
-                <label for="genreRadio">Genre</label><br>
-            </div>
+                <div class="genre-radio">
+                    <input type="radio" name="option" value="genreRadio" id="genreRadio">
+                    <label for="genreRadio">Genre</label><br>
+                </div>
 
-            <div class="author-radio">
-                <input type="radio" name="option" value="authorRadio" id="authorRadio">
-                <label for="authorRadio">Auteur</label><br>
+                <div class="author-radio">
+                    <input type="radio" name="option" value="authorRadio" id="authorRadio">
+                    <label for="authorRadio">Auteur</label><br>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="story-block">
-        {{#each storiesFilter}}
-        <div class="story-full" id="storyFull">
-            <div class="article-title">
-                <h3 class="story-title">
-                    <a href="/story/read/{{id}}">{{title}}</a>
-                </h3>
-            </div>
-            <div class="article-sample">
-                <div class="col-1">
-                    <div class="article-cover">
-                        <img src="/pictures/logo145.webp" alt="">
+        <div class="story-block">
+            {{#each storiesFilter}}
+            <div class="story-full" id="storyFull">
+                <div class="article-title">
+                    <h3 class="story-title">
+                        <a href="/story/read/{{id}}">{{title}}</a>
+                    </h3>
+                </div>
+                <div class="article-sample">
+                    <div class="col-1">
+                        <div class="article-cover">
+                            <img src="/pictures/logo145.webp" alt="">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="article-resume">
+                            <h4>Incipit</h4>
+                            <p> {{content}} </p>
+                        </div>
+                        <div class="article-infos">
+                            <p class="genre-name" id="genreName"> {{'genre.genre_name'}} </p>
+                            <p class="author-name" id="authorName"> {{'user.username'}} </p>
+                            {{#if isFinished}}
+                            <p>Histoire terminée</p>
+                            {{else}}
+                            <p>En cours</p>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
-                <div class="col-2">
-                    <div class="article-resume">
-                        <h4>Incipit</h4>
-                        <p> {{content}} </p>
-                    </div>
-                    <div class="article-infos">
-                        <p class="genre-name" id="genreName"> {{'genre.genre_name'}} </p>
-                        <p class="author-name" id="authorName"> {{'user.username'}} </p>
-                        {{#if isFinished}}
-                        <p>Histoire terminée</p>
-                        {{else}}
-                        <p>En cours</p>
-                        {{/if}}
-                    </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+
+    <div class="col-md-6">
+        {{#each stories}}
+        <div class="article-title">
+            <h3>
+                <a href="/story/read/{{id}}">{{title}}</a>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="article-cover">
+                    <img src="/pictures/logo145.webp" alt="">
+                </div>
+            </div>
+            <div class="col">
+                <div class="article-resume">
+                    <h4>Incipit</h4>
+                    <p> {{content}} </p>
+                </div>
+                <div class="container d-flex justify-content-between">
+                    <p> {{'genre.genre_name'}} </p>
+                    <p> {{'user.username'}} </p>
+                    {{#if isFinished}}
+                    <p>Histoire terminée</p>
+                    {{else}}
+                    <p>En cours</p>
+                    {{/if}}
                 </div>
             </div>
         </div>
         {{/each}}
     </div>
 </div>
-{{/if}}
 
-<div class="articles-pan">
-    {{#each stories}}
-    <div class="article-title">
-        <h3>
-            <a href="/story/read/{{id}}">{{title}}</a>
-        </h3>
-    </div>
-    <div class="article-sample">
-        <div class="col-1">
-            <div class="article-cover">
-                <img src="/pictures/logo145.webp" alt="">
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="article-resume">
-                <h4>Incipit</h4>
-                <p> {{content}} </p>
-            </div>
-            <div class="article-infos">
-                <p> {{'genre.genre_name'}} </p>
-                <p> {{'user.username'}} </p>
-                {{#if isFinished}}
-                <p>Histoire terminée</p>
-                {{else}}
-                <p>En cours</p>
-                {{/if}}
-            </div>
-        </div>
-    </div>
-    {{/each}}
-</div>
 
 <script id="searchQuery" data-value="{{searchQuery}}" src="/js/search_filter.js"></script>

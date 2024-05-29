@@ -1,31 +1,79 @@
-<div class="admin-title">
-    <h1>Bonjour {{username}} </h1>
-</div>
+<div class="container-fluid">
+    <div class="admin-title">
+        <h1 class="text-center">Bonjour {{username}} </h1>
+    </div>
 
-<div class="users-manage">
-    <div class="users-list">
-        <h2>Liste utilisateurs</h2>
-        <input type="text" placeholder="Rechercher un utilisateur">
-        <table class="users-table">
+    <div class="users-manage mx-3 my-3">
+        <div class="users-list">
+            <h2>Liste utilisateurs</h2>
+            <div class="col-md-4">
+                <input class="form-control mb-2" type="text" placeholder="Rechercher un utilisateur">
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom d'utilisateur</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each user}}
+                    <tr>
+                        <td> {{username}} </th>
+                        <td> {{email}} </td>
+                        <td>
+                            <a class="btn btn-primary" href="/user/update/{{id}}">Modifier</a>
+                        </td>
+                        <td>
+                            <form action="/user/delete/{{id}}" method="post">
+                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="stories-list mx-3 my-3">
+        <h2>Liste histoires</h2>
+        <div class="search-bar">
+            <form action="/story/search" method="get">
+                <div class="col-md-4">
+                    <input class="form-control mb-2" type="search" placeholder="Chercher une histoire" name="searchBar">
+                </div>
+            </form>
+        </div>
+
+        {{#if storiesFilter}}
+        <h2>Coucou</h2>
+        {{/if}}
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Nom d'utilisateur</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Modifier</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Auteur</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Lire</th>
                     <th scope="col">Supprimer</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each user}}
+                {{#each stories}}
                 <tr>
-                    <td> {{username}} </th>
-                    <td> {{email}} </td>
+                    <td> {{title}} </td>
+                    <td> {{'user.username'}} </td>
+                    <td> {{'genre.genre_name'}} </td>
                     <td>
-                        <button><a href="/user/update/{{id}}">Modifier</a></button>
+                        <a class="btn btn-primary" href="/story/read/{{id}}">Lire</a>
                     </td>
                     <td>
-                        <form action="/user/delete/{{id}}" method="post">
-                            <button type="submit">Supprimer</button>
+                        <form action="/story/delete/{{id}}" method="post">
+                            <button class="btn btn-danger" type="submit">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -33,59 +81,19 @@
             </tbody>
         </table>
     </div>
-</div>
 
-
-<div class="stories-list">
-    <h2>Liste histoires</h2>
-
-    <div class="search-bar">
-        <form action="/story/search" method="get">
-            <input type="search" placeholder="Search" name="searchBar">
-            <button type="submit">Chercher</button>
+    <div class="genre-create mx-3 my-3">
+        <h2>Ajouter un genre</h2>
+        <form action="/genre/create" method="post">
+            <div class="create-container">
+                <label for="genreName" class="mb-1">Créer un nouveau genre</label>
+                <div class="d-flex align-items-start">
+                    <div class="col-md-4">
+                        <input type="text" name="genre_name" id="genre_name" class="form-control">
+                    </div>
+                    <button class="btn btn-outline-primary mx-2">Envoyer</button>
+                </div>
+            </div>
         </form>
     </div>
-
-{{#if storiesFilter}}
-    <h2>Coucou</h2>
-{{/if}}
-    <table class="stories-table">
-        <thead>
-            <tr>
-                <th scope="col">Titre</th>
-                <th scope="col">Auteur</th>
-                <th scope="col">Genre</th>
-                <th scope="col">Lire</th>
-                <th scope="col">Supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each stories}}
-            <tr>
-                <td> {{title}} </td>
-                <td> {{'user.username'}} </td>
-                <td> {{'genre.genre_name'}} </td>
-                <td>
-                    <button><a href="/story/read/{{id}}">Lire</a></button>
-                </td>
-                <td>
-                    <form action="/story/delete/{{id}}" method="post">
-                        <button type="submit">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-
-<div class="genre-create">
-    <h2>Ajouter un genre</h2>
-    <form action="/genre/create" method="post">
-        <div class="create-container">
-            <label for="genreName">Créer un nouveau genre</label>
-            <input type="text" name="genre_name" id="genre_name">
-            <button>Envoyer</button>
-        </div>
-    </form>
 </div>

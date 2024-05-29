@@ -1,49 +1,60 @@
-<div class="user-title">
-    <h1>Hello {{username}} </h1>
-</div>
+{{!-- <style>
+    .articles-pannel {
+        overflow-x: auto;
+        /* Ajoute une barre de défilement horizontale si nécessaire */
+        white-space: nowrap;
+        /* Empêche les éléments de passer à la ligne */
+    }
 
-<div class="storyList-pannel">
-    <h2>History</h2>
-    <div class="articles-pannel">
-        {{#each stories}}
-        <div class="article-title">
-            <h3> {{title}} </h3>
-        </div>
-        <div class="article-sample">
-            <div class="col-1">
-                <div class="article-cover">
-                    <img src="/pictures/logo145.webp" alt="">
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="article-resume">
-                    <h4>Incipit</h4>
-                    <p> {{content}} </p>
-                </div>
-                <div class="article-infos">
-                    <p> {{'genre.genre_name'}} </p>
-                    {{#if isFinished}}
-                    <p>Histoire terminée</p>
-                    {{else}}
-                    <p>Histoire en cours</p>
-                    {{/if}}
-                    <button><a href="/story/read/{{id}}">Read</a></button>
-                </div>
-            </div>
-        </div>
-        {{/each}}
+    .article {
+        width: 300px;
+        /* Définissez une largeur fixe pour chaque article */
+        margin-right: 10px;
+        /* Ajoutez une marge entre chaque article */
+        display: inline-block;
+        /* Affichez les articles en ligne */
+        vertical-align: top;
+        /* Alignez les articles en haut */
+    }
+</style> --}}
+
+
+<div class="container-fluid">
+    <div class="user-title">
+        <h1 class="text-center"> Bonjour {{username}} </h1>
     </div>
 
-    <div class="perso">
-        <h2>Mes informations</h2>
-        <div class="ac-username">
-            <p>Nom d'utilisateur : </p>
-            <p> {{username}} </p>
+    <div class="storyList-pannel">
+        <h2>Historique</h2>
+        <div class="articles-pannel d-flex flex-row">
+            {{#each stories}}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> {{title}} </h5>
+                    <p class="card-text"> {{content}} </p>
+                    <p class="card-text"> {{'genre.genre_name'}} </p>
+                    {{#if isFinished}}
+                    <p class="card-text">Histoire terminée</p>
+                    {{else}}
+                    <p class="card-text">Histoire en cours</p>
+                    {{/if}}
+                    <a href="/story/read/{{id}}" class="card-link">Lire</a>
+                </div>
+            </div>
+            {{/each}}
         </div>
-        <div class="ac-email">
-            <p>Email : </p>
-            <p> {{user.email}} </p>
+
+        <div class="perso">
+            <h2>Mes informations</h2>
+            <div class="d-flex">
+                <p>Nom d'utilisateur : </p>
+                <p> {{username}} </p>
+            </div>
+            <div class="d-flex">
+                <p>Email : </p>
+                <p> {{user.email}} </p>
+            </div>
+            <button><a href="/user/update/{{user.id}}">Modifier mes informations</a></button>
         </div>
-        <button><a href="/user/update/{{user.id}}">Modifier mes informations</a></button>
     </div>
 </div>

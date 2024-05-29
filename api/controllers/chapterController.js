@@ -23,7 +23,6 @@ module.exports = {
 
             return res.render('story_read', {
                 story: existingStory,
-                hasNewChapter: true,
             });
         }
         res.redirect('back')

@@ -1,38 +1,47 @@
-<div class="page-title">
-    <h1>Rédiger une histoire</h1>
+<div class="container-fluid">
+    <div class="page-title">
+        <h1 class="text-center">Rédiger une histoire</h1>
+    </div>
+    {{#if logError}}
+    <p>
+        {{logError}}
+    </p>
+    {{/if}}
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <form action="/story/create" method="post" onsubmit="StoryCheck()" class="text-center">
+                    <div class="story-attributes">
+                        <div class="article-title">
+                            <input type="text" id="title" name="title" placeholder="TITRE"
+                                class="input-title form-control">
+                        </div>
+                        {{#if error}}
+                        <p> {{error}} </p>
+                        {{/if}}
+                        <div class="container d-flex align-items-center my-3">
+                            <label for="genreId">Genre</label>
+                            <select name="genreId" id="genreId" class="form-select mx-2">
+                                {{#each genres}}
+                                <option value="{{id}}"> {{genre_name}} </option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        <textarea name="articleContent" id="articleContent" class="form-control" cols="50" rows="10"
+                            placeholder="Contenu de l'article"></textarea>
+                    </div>
+                    <div class="send-button">
+                        <button type="submit" class="btn btn-primary my-2">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
-{{#if logError}}
-<p>
-    {{logError}}
-</p>    
-{{/if}}
 
-<form action="/story/create" method="post" onsubmit="StoryCheck()">
-    <div class="story-attributes">
-        <div class="article-title">
-            <input type="text" id="title" name="title" placeholder="TITRE" class="input-title">
-        </div>
-        {{#if error}}
-        <p> {{error}} </p>
-        {{/if}}
-
-        <div class="article-genre">
-            <label for="genreId">Genre</label>
-            <select name="genreId" id="genreId">
-                {{#each genres}}
-                <option value="{{id}}"> {{genre_name}} </option>
-                {{/each}}
-            </select>
-        </div>
-    </div>
-
-    <div class="article-content">
-        <textarea name="articleContent" id="articleContent" cols="200" rows="30"></textarea>
-    </div>
-
-    <div class="send-button">
-        <button type="submit">Enregistrer</button>
-    </div>
-</form>
 
 <script src="/js/storyCreate_check.js"></script>
