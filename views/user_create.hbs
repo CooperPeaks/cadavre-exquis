@@ -5,39 +5,38 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form action="/user/register" method="post">
-                <div class="form-group mb-3">
+
+            <form action="/user/register" method="post" onsubmit="return RegisterCheck()">
+
+                <div class="form-group mb-3" id="user-container">
                     <label for="username" class="form-label">Nom d'utilisateur</label>
-                    <input name="username" type="text" class="form-control" id="username"
-                        placeholder="Choisissez un nom d'utilisateur">
+                    <input name="username" type="text" class="form-control" id="username">
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-3" id="mail-container">
                     <label for="email" class="form-label">Adresse email</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                        placeholder="Entrez une adresse mail valide">
+                    <input type="email" class="form-control" id="email" name="email">
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-3" id="password-container">
                     <label for="password" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Choisissez un mot de passe">
+                    <input type="password" class="form-control" id="password" name="password">
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group mb-3" id="confPass-container">
                     <label for="confPass" class="form-label">Confirmer Mot de passe</label>
-                    <input type="password" class="form-control" id="confPass" name="confPass"
-                        placeholder="Confirmez votre mot de passe">
+                    <input type="password" class="form-control" id="confPass" name="confPass">
                 </div>
-                <div class="form-group mb-3 form-check">
+                <div class="form-group mb-3 form-check" id="check-container">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">En cochant cette cage, vous acceptez de partager
-                        vos
-                        données</label>
+                    <label class="form-check-label" for="exampleCheck1">En cochant cette cage, vous acceptez nos
+                        <a href="">conditions d'utilisation</a> ainsi que notre <a href="">politique de confidentialité</a></label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
         </div>
     </div>
 
 </div>
+
+<script src="/js/register_check.js"></script>
 
 {{!--
 <div class="container-fluid">
@@ -62,7 +61,3 @@
         <button type="submit">S'inscrire</button>
     </form>
 </div> --}}
-
-
-{{!--
-<script src="/js/register_check.js"></script> --}}

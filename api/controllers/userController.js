@@ -12,7 +12,7 @@ module.exports = {
     post: async (req, res) => {
         if (req.body.password !== req.body.confPass || req.body.password === "") {
             const error = "Le mot de passe ne correspond pas"
-            res.render('user_create', { error })
+            return res.render('user_create', { error })
         }
         else {
             const user = await User.findOne({
