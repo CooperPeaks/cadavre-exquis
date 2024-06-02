@@ -1,15 +1,24 @@
-<h1>Coucou user update</h1>
+<div class="container-fluid">
+    <h1>Modifier mes informations personnelles</h1>
 
-<form action="/user/update/{{user.id}}" method="post">
-    <div class="username">
-        <label for="username">Nom d'utilisateur</label>
-        <input name="username" type="text" id="username" value="{{user.username}}">
-    </div>
+    <form action="/user/update/{{user.id}}" method="post">
+        <div class="row mb-3 align-items-center">
+            <label for="username" class="col-md-auto">Nom d'utilisateur :</label>
+            <div class="col-md">
+                <input class="form-control" style="width: 200px;" name="username" type="text" id="username"
+                    value="{{user.username}}">
+            </div>
+        </div>
 
-    <div class="email">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" value="{{user.email}}">
-    </div>
+        <div class="row mb-3 align-items-center">
+            <label for="email" class="col-md-auto">Email :</label>
+            <div class="col-md">
+                <input class="form-control" style="width: 200px;" type="text" name="email" id="email"
+                    value="{{user.email}}">
+            </div>
+        </div>
 
-    <button type="submit">Modifier</button>
-</form>
+        <button class="btn btn-primary" type="submit">Modifier</button>
+    </form>
+
+</div>
