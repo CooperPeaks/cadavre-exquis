@@ -2,12 +2,14 @@ const Genre = require('../models/genreModel')
 const Story = require('../models/storyModel')
 const User = require('../models/userModel')
 const { Op } = require('sequelize')
+const bcrypt = require("bcrypt")
 
 module.exports = {
     // Display register page
     get: (req, res) => {
         res.render('user_create')
     },
+
     // Allow visitor to create account
     post: async (req, res) => {
         if (req.body.password !== req.body.confPass || req.body.password === "") {
@@ -37,6 +39,7 @@ module.exports = {
             }
         }
     },
+    
     // Display log page
     getLogin: (req, res) => {
         res.render('user_log')
@@ -50,13 +53,27 @@ module.exports = {
         if (!user) {
             res.redirect('/user/register')
         } else {
-            req.session.username = user.username
-            req.session.uId = user.id
-            // If admin 
-            if (user.isAdmin) {
-                req.session.isAdmin = true
-            }
-            res.redirect('/')
+            // Compare password (form and database)
+            bcrypt.compare(req.body.password, user.password, function (err, result) {
+                if (!result) {
+                    res.status(401).render('login', { errors: errors.array() })
+                } else {
+                    req.session.username = user.username
+                    req.session.uId = user.id
+                    // If admin 
+                    if (user.isAdmin) {
+                        req.session.isAdmin = true
+                    }
+                    res.redirect('/')        
+                }
+            })
+            // req.session.username = user.username
+            // req.session.uId = user.id
+            // // If admin 
+            // if (user.isAdmin) {
+            //     req.session.isAdmin = true
+            // }
+            // res.redirect('/')
         }
     },
     logout: (req, res) => {
@@ -90,7 +107,7 @@ module.exports = {
         const user = await User.findByPk(req.params.id, { raw: true })
         res.render("user_update", { user })
     },
-    postUpdate: async(req, res) => {
+    postUpdate: async (req, res) => {
         const user = await User.findOne({ where: { username: req.session.username }, raw: true })
         await User.update({
             username: req.body.username,

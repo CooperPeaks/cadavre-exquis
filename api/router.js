@@ -57,7 +57,19 @@ router.route('/story/search')
 // User routes
 router.route('/user/register')
     .get(userController.get)
-    .post(userController.post)
+    .post([
+        body('username')
+            .isLength({min: 2})
+            .notEmpty().withMessage('Un nom d\'utilisateur est recquis')
+            .trim(),
+        body('email')
+            .notEmpty().withMessage('Une adresse mail est recquise')
+            .trim(),
+        body('password')
+            .isLength({min: 8})
+            .notEmpty().withMessage('Un mot de passe est recquis')
+            .trim()
+    ], userController.post)
 
 router.route('/user/log')
     .get(userController.getLogin)

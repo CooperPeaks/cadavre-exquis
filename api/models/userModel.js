@@ -1,4 +1,4 @@
-const {DataTypes} = require('sequelize')
+const { DataTypes } = require('sequelize')
 const bcrypt = require('bcrypt')
 const config = require('../../config')
 const Story = require('./storyModel')
@@ -15,7 +15,7 @@ const User = config.sequelize.define('users', {
         allowNull: false
     },
     email: {
-        type: DataTypes.STRING, 
+        type: DataTypes.STRING,
         allowNull: false
     },
     password: {
@@ -25,6 +25,21 @@ const User = config.sequelize.define('users', {
     isAdmin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    }
+}, {
+    hooks: {
+        beforeCreate: (User) => {
+            {
+                User.password = User.password && User.password != "" ? bcrypt.hashSync(User.password, 10) : ""
+            }
+        }
+        
+        ,
+        beforeBulkUpdate: (User) => {
+
+            User.password = User.password && User.password != "" ? bcrypt.hashSync(User.password, 10) : ""
+
+        }
     }
 })
 

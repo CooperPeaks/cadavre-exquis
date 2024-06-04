@@ -16,9 +16,6 @@ const Story = config.sequelize.define('stories', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    // coverPicture: {
-    //     type: DataTypes.STRING
-    // },
     isFinished: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
