@@ -89,17 +89,17 @@ module.exports = {
 
             // Update story content
             const updatedContent = story.content + "\n" + req.body.content;
-            await story.update({content : updatedContent})
+            await story.update({ content: updatedContent })
             console.log(story.isFinished, story.content);
 
             res.redirect('/story/read/' + req.params.id)
         }
-        else {    
-            console.log("Un utilisateur doit écrire au moins un chapitre avant que l'histoire ne soit terminée");
+        else {
+            return res.render('story_read', { error: 'Un utilisateur doit écrire au moins un chapitre ' })
         }
-
     },
 
+    // console.log("Un utilisateur doit écrire au moins un chapitre avant que l'histoire ne soit terminée");
     search: async (req, res) => {
         const searchQuery = req.query.searchBar
         const storiesFilter = await Story.findAll({

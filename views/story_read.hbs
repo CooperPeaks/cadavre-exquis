@@ -70,11 +70,13 @@
         {{/ifNotEqual}}
 
         {{#ifCond story.user.username username}}
-        <form action="/story/finish/{{story.id}}" method="post" onsubmit="return endingCheck()">
+        <form action="/story/finish/{{story.id}}" method="post">
             <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Terminez votre histoire"></textarea>
             <button class="btn btn-outline-primary" type="submit">Envoyer</button>
         </form>
         {{/ifCond}}
+
+
     </div>
     {{/if}}
 </div>
