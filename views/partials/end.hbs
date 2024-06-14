@@ -1,3 +1,56 @@
+<button id="scrollToTopBtn" title="Go to top">↑</button>
+
+<style>
+    #scrollToTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    #scrollToTopBtn.show {
+        display: block;
+        opacity: 1;
+    }
+
+    #scrollToTopBtn:hover {
+        background-color: #555;
+    }
+</style>
+
+<script>
+
+    let mybutton = document.getElementById("scrollToTopBtn");
+
+    function scrollFunction() {
+        if (document.documentElement.scrollTop > 20) {
+            mybutton.classList.add("show")
+        } else {
+            mybutton.classList.remove("show")
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onscroll = scrollFunction;
+    mybutton.onclick = scrollToTop; 
+
+</script>
+
 </body>
 
 </html>

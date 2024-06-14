@@ -26,7 +26,9 @@ const User = config.sequelize.define('users', {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     }
-}, {
+}, 
+
+{
     hooks: {
         beforeCreate: (User) => {
             {

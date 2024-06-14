@@ -6,7 +6,7 @@ const Chapter = require('../models/chapterModel')
 const { Op } = require('sequelize')
 
 module.exports = {
-    get: async (req, res) => {
+    getStory: async (req, res) => {
         if (!req.session || !req.session.username) {
             return res.render('home')
         }
@@ -49,12 +49,9 @@ module.exports = {
     },
 
     list: async (req, res) => {
-        const stories = await Story.findAll({
-            include: [{ model: Genre }, { model: User }],
-            raw: true
-        });
+        const stories = await Story.findAll({ include: [{ model: Genre }, { model: User }], raw: true });
         const genres = await Genre.findAll({ raw: true })
-        console.log(stories);
+
         res.render('story_list', { stories, genres })
     },
 
@@ -82,8 +79,8 @@ module.exports = {
         const story = await Story.findByPk(req.params.id, { include: Chapter })
         const user = await User.findOne({ where: { username: req.session.username } })
         const chapters = story.chapters
-
         const isWrittenByOther = chapters.some(chapter => chapter.userId !== user.id)
+
         if (isWrittenByOther) {
             await story.update({ isFinished: true })
 

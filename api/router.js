@@ -27,7 +27,7 @@ router.get('/check-authentication', (req, res) => {
 
 // Story routes
 router.route('/story/create')
-    .get(storyController.get)
+    .get(storyController.getStory)
     .post(isLogMiddleware,
         body('title')
             .notEmpty()

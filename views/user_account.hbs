@@ -28,7 +28,7 @@
         <h2>Historique</h2>
         <div class="articles-pannel d-flex flex-row">
             {{#each stories}}
-            <div class="card" style="width: 18rem;">
+            <div class="card mx-2 mt-1" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title"> {{title}} </h5>
                     <p class="card-text"> {{content}} </p>
@@ -44,11 +44,12 @@
             {{/each}}
         </div>
 
-        <div class="perso">
+        <div class="perso mt-4">
             <h2>Mes informations</h2>
             <div class="d-flex">
                 <p>Nom d'utilisateur : </p>
                 <p> {{username}} </p>
+                <a href="" class="btn btn-primary">Modifier</a>
             </div>
             <div class="d-flex">
                 <p>Email : </p>

@@ -70,10 +70,19 @@
         {{/ifNotEqual}}
 
         {{#ifCond story.user.username username}}
-        <form action="/story/finish/{{story.id}}" method="post">
-            <textarea name="content" id="chapter" cols="100" rows="10" placeholder="Terminez votre histoire"></textarea>
-            <button class="btn btn-outline-primary" type="submit">Envoyer</button>
-        </form>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="/story/finish/{{story.id}}" method="post" class="text-center">
+                        <div class="mb-3">
+                            <textarea name="content" id="chapter" class="form-control" cols="100" rows="10"
+                                placeholder="Terminez votre histoire"></textarea>
+                        </div>
+                        <button class="btn btn-outline-primary" type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         {{/ifCond}}
 
 
