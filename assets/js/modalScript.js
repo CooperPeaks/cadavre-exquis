@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Récupérer le bouton qui ouvre la modale
-    var btn = document.querySelector('[data-bs-toggle="modal"][data-bs-target="#myModal"]');
+    var btn = document.getElementById('startButton');
 
     // Récupérer la modale
     var modal = document.getElementById('myModal');
