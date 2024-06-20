@@ -1,12 +1,13 @@
 const express = require('express')
-const { engine } = require('express-handlebars')
 const session = require('express-session')
-var SequelizeStore = require("connect-session-sequelize")(session.Store);
 const path = require('path')
-
 const router = require('./api/router')
+
 const config = require('./config')
 
+var SequelizeStore = require("connect-session-sequelize")(session.Store);
+
+const { engine } = require('express-handlebars')
 const app = express()
 const port = 3000
 

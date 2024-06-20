@@ -1,24 +1,29 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-5">
             <h1 class="text-center">Des cadavres dans le placard</h1>
         </div>
     </div>
 
     <div class="row">
-        <!-- Sidebar section for search bar and filters -->
-        
         <div class="col-12 col-md-4">
             <div class="search-bar mb-3">
-                <form class="d-flex" action="/story/search" method="get">
-                    <input class="form-control me-2" type="search" placeholder="Nom d'un auteur, titre..."
-                        name="searchBar" id="searchBar">
-                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                <form class="d-flex flex-column" action="/story/search" method="get">
+                    <div class="d-flex w-100">
+                        <input class="form-control me-2" type="search" placeholder="Nom d'un auteur, titre..."
+                            name="searchBar" id="searchBar">
+                        <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+                    </div>
+                    <select name="" id="" class="form-select mt-2 w-100">
+                        <option value="">Titre</option>
+                        <option value="">Genre</option>
+                        <option value="">Auteur</option>
+                    </select>
                 </form>
             </div>
 
             {{#if storiesFilter}}
-            <div class="filter-block mb-3">
+            {{!-- <div class="filter-block mb-3">
                 <div class="filter-opts">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="option" value="titleRadio" id="titleRadio">
@@ -33,37 +38,36 @@
                         <label class="form-check-label" for="authorRadio">Auteur</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             {{/if}}
         </div>
 
         <!-- Main content section for articles -->
         <div class="col-12 col-md-8">
             {{#if storiesFilter}}
-            <div class="story-block">
+            <div class="row me-5">
                 {{#each storiesFilter}}
-                <div class="story-full mb-3" id="storyFull">
-                    <div class="article-title">
-                        <h3 class="story-title">
-                            <a href="/story/read/{{id}}">{{title}}</a>
-                        </h3>
-                    </div>
-                    <div class="article-sample row">
-                        <div class="col-12 col-md-2">
+                <div class="col-12 mb-3 py-3 border rounded" style="background-color: #24292B;">
+                    <div class="row">
+                        <div class="col-2">
                             <img src="/pictures/logo145.webp" alt="" class="img-fluid">
                         </div>
-                        <div class="col-12 col-md-8">
+                        <div class="col-10">
+                            <div class="article-title">
+                                <h3>
+                                    <a class="title-list" href="/story/read/{{id}}">{{title}}</a>
+                                </h3>
+                            </div>
                             <div class="article-resume">
-                                <h4>Incipit</h4>
-                                <p> {{content}} </p>
+                                <p id="p-list"> {{content}} </p>
                             </div>
                             <div class="article-infos d-flex">
-                                <p class="me-3"> {{'genre.genre_name'}} </p>
-                                <p class="me-3"> {{'user.username'}} </p>
+                                <p id="p-list" class="pe-3"> {{'genre.genre_name'}} </p>
+                                <p id="p-list" class="pe-3"> {{'user.username'}} </p>
                                 {{#if isFinished}}
-                                <p class="me-3">Histoire terminée</p>
+                                <p id="p-list" class="pe-3">Histoire terminée</p>
                                 {{else}}
-                                <p class="me-3">En cours</p>
+                                <p id="p-list" class="pe-3">En cours</p>
                                 {{/if}}
                             </div>
                         </div>
@@ -73,30 +77,29 @@
             </div>
             {{/if}}
 
-            <div class="row">
+            <div class="row me-5">
                 {{#each stories}}
-                <div class="col-12 mb-3">
-                    <div class="article-title">
-                        <h3>
-                            <a href="/story/read/{{id}}">{{title}}</a>
-                        </h3>
-                    </div>
+                <div class="col-12 mb-3 py-3 border rounded" style="background-color: #24292B;">
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-2">
                             <img src="/pictures/logo145.webp" alt="" class="img-fluid">
                         </div>
-                        <div class="col-8">
-                            <div class="article-resume">
-                                <h4>Incipit</h4>
-                                <p> {{content}} </p>
+                        <div class="col-10">
+                            <div class="article-title">
+                                <h3>
+                                    <a class="title-list" href="/story/read/{{id}}">{{title}}</a>
+                                </h3>
                             </div>
-                            <div class="article-infos d-flex justify-content-between">
-                                <p> {{'genre.genre_name'}} </p>
-                                <p> {{'user.username'}} </p>
+                            <div class="article-resume">
+                                <p id="p-list"> {{content}} </p>
+                            </div>
+                            <div class="article-infos d-flex">
+                                <p id="p-list" class="pe-3"> {{'genre.genre_name'}} </p>
+                                <p id="p-list" class="pe-3"> {{'user.username'}} </p>
                                 {{#if isFinished}}
-                                <p>Histoire terminée</p>
+                                <p id="p-list" class="pe-3">Histoire terminée</p>
                                 {{else}}
-                                <p>En cours</p>
+                                <p id="p-list" class="pe-3">En cours</p>
                                 {{/if}}
                             </div>
                         </div>

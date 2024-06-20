@@ -1,47 +1,41 @@
 <div class="container-fluid">
-
     <div class="row mb-3 py-3">
-        <div class="col">
-            <img src="/pictures/Skull-Top-Hat.webp" alt="logo cadavre exquis" class="mx-auto d-block"
-                style="width: 85%;">
-        </div>
-
-        <div class="col d-flex flex-column align-items-center justify-content-center">
+        <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
             <h1>KADAVRESKY</h1>
-            <h2 class="text-center">Découvrez l'art de l'écriture collaborative,
-                où chaque contribution façonne une histoire unique</h2>
-
-            <a href="/story/create" class="btn btn-outline-primary" data-bs-toggle="modal"
+            <h2 class="text-center">Découvrez l'art de l'écriture collaborative, où chaque contribution façonne une
+                histoire unique</h2>
+            <a href="/story/create" class="btn btn-outline-secondary" data-bs-toggle="modal"
                 data-bs-target="#myModal">Commencer !</a>
-                
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+            <img src="/pictures/Skull-Top-Hat.webp" alt="logo cadavre exquis" class="mx-auto d-block img-fluid my-4"
+                style="width: 85%;">
         </div>
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col d-flex flex-column align-items-center">
             <h2 class="text-center">Des cadavres dans le placard</h2>
             <h3 class="text-center">Découvrez les histoires écrites par les autres utilisateurs</h3>
-            <div class="text-center">
-                <img src="/pictures/logo145.webp" alt="">
-                <a href="/story/list" class="btn btn-outline-primary">Lire</a>
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="/pictures/skeletonCofee.webp" alt="skeleton coffee" class="img-fluid my-4"
+                    style="width: 50%;">
+                <a href="/story/list" class="btn btn-outline-secondary ms-3">Lire</a>
             </div>
-
         </div>
     </div>
+
 </div>
 
-<!-- The Modal -->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
-            <!-- Modal Header -->
             <div class="modal-header">
                 <h4 class="modal-title">Se connecter</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            <!-- Modal body -->
             <div class="modal-body">
                 <form action="/user/log" method="post" class="log-form">
                     <div class="mb-3 mt-3">
@@ -54,7 +48,7 @@
                         <input type="password" class="form-control" id="pwd" placeholder="Entrez votre mot de passe"
                             name="pswd">
                     </div>
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    <button type="submit" class="btn btn-outline-secondary">Se connecter</button>
                 </form>
             </div>
         </div>
